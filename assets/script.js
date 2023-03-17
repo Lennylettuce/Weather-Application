@@ -120,11 +120,28 @@ function pageInfo(cityData){
     $("#humidity5").text("Humidity " + cityData.list[4].main.humidity + "%");
     $("#wind5").text("Wind speed: " + cityData.list[4].wind.speed + "mph");
 
-}
+};
 
 
 //event handlers
+$("#searchBtn").on("click", function (event) {
+    event.preventDefault();
 
+    var userCity = $("#city").val();
+    var makeList = $("<li>").addClass("list-group-city");
+    $("#searchedCities").prepend(makeList);
+    makeList.text(userCity);
+
+    $("#display").css("visibility", "visible");
+
+    var callQuery = buildQuery();
+
+    $.ajax({
+        url: callQuery,
+        method: "GET"
+    }).then(pageInfo);
+
+});
 
 //GIVEN a weather dashboard with form inputs
 //WHEN I search for a city
