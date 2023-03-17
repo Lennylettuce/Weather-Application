@@ -3,7 +3,7 @@
 //build query function
 
 function buildQuery(){
-    var query = "api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}";
+    var query = "api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}";
     
     var weatherKey = {"appid": "7996605503241f352888cc4a4b202067"};
 
@@ -18,9 +18,14 @@ function buildQuery(){
 
 //build forecast days functions
     //append page
-    
 
-    
+function pageInfo(cityData){
+
+
+    $("")
+}
+
+
 //event handlers
 
 
