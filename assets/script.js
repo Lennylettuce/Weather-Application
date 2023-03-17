@@ -1,13 +1,27 @@
-//api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
-
-var weatherKey = "7996605503241f352888cc4a4b202067";
-
-//user input for city
-var city;
-
 //api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key} fetch by city name instead of lon/lat pts
 
+//build query function
 
+function buildQuery(){
+    var query = "api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}";
+    
+    var weatherKey = {"appid": "7996605503241f352888cc4a4b202067"};
+
+    //get user input from id city and put it in the request query
+    weatherKey.q = $("#city")
+        .val()
+        .toLowerCase()
+        .trim();
+    return query + $.param(weatherKey);
+    
+}
+
+//build forecast days functions
+    //append page
+    
+
+    
+//event handlers
 
 
 //GIVEN a weather dashboard with form inputs
