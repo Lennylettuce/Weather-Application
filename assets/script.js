@@ -7,7 +7,7 @@ function buildQuery(){
     
     var weatherKey = {"appid": "7996605503241f352888cc4a4b202067"};
 
-    //get user input from id city and put it in the request query
+    //get user input from id city and put it in weatherKey object
     weatherKey.q = $("#city")
         .val()
         .toLowerCase()
@@ -16,12 +16,12 @@ function buildQuery(){
     
 }
 
-//build forecast days functions
+//build forecast days function
     //append page
 
 function pageInfo(cityData){
-
-    var icon1 = 
+ localStorage.getItem("cityList");
+    var iconImg = 
         "https://openweathermap.org/img/wn/" + cityData.list[0].weather[0].icon + "@2px.png";
     var cityName = cityData.city.name;
     var dateEpochts = cityData.list[0].dt * 1000;
@@ -32,7 +32,7 @@ function pageInfo(cityData){
     var todayDate = "(" + month + "/" + day "/" + year + ")";
 
     var icon1 = $("#icon1").attr({
-        src: icon1,
+        src: iconImg,
         alt: cityData.list[0].weather[0].description,
     }); 
     
@@ -42,7 +42,7 @@ function pageInfo(cityData){
     $(".wind").text("Wind speed: " + cityData.list[0].wind.speed + "mph");
     $("h3").append(icon1);
 
-    //set 
+   
 
     var icon2 = 
         "https://openweathermap.org/img/wn/" + cityData.list[1].weather[0].icon + "@2px.png";
@@ -127,6 +127,7 @@ function pageInfo(cityData){
 $("#searchBtn").on("click", function (event) {
     event.preventDefault();
 
+    //make list for cities
     var userCity = $("#city").val();
     var makeList = $("<li>").addClass("list-group-city");
     $("#searchedCities").prepend(makeList);
@@ -134,7 +135,13 @@ $("#searchBtn").on("click", function (event) {
 
     $("#display").css("visibility", "visible");
 
+    //call first function
     var callQuery = buildQuery();
+
+    //set local storage
+        var savedCities = userCity;
+       
+        localStorage.setItem("cityList", savedCities);
 
     $.ajax({
         url: callQuery,
