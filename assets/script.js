@@ -3,7 +3,7 @@ var lastSearch;
 var savedCities;
 var cities = [];
 
-
+//localStorage display
 if (localStorage.getItem("cities")) {
 	savedCities = JSON.parse(localStorage.getItem("cities"));
 	console.log(savedCities);
@@ -15,13 +15,11 @@ if (localStorage.getItem("cities")) {
 	cities;
 }
 renderCityInfo();
-console.log("cities", cities);
 
 $("#search-city").on("click", function (event) {
 	event.preventDefault();
 	
 	var city = $("#city-input").val();
-	console.log(city);
 
 	var query1 =
 		"https://api.openweathermap.org/data/2.5/weather?q=" +
@@ -50,6 +48,7 @@ $("#search-city").on("click", function (event) {
 		cityList.attr("lon", response.coord.lon);
 		$("#list-cities").prepend(cityList);
 
+		//use prev location stats
 		cityList.on("click", function () {
 			lat = $(this).attr("lat");
 			lon = $(this).attr("lon");
@@ -109,7 +108,7 @@ function renderCityByLoc(lat, lon) {
 		method: "GET",
 	}).then(function (response) {
 		
-		$("#temperature").text(`Temperature: ${response.current.temp} \xB0F`);
+		$("#temperature").text(`Temperature: ${response.current.temp} F`);
 		$("#humidity").text(`Humidity: ${response.current.humidity}%`);
 		$("#wind-speed").text(`Wind Speed: ${response.current.wind_speed} MPH`);
 
@@ -147,7 +146,7 @@ function renderForecastCards(response) {
 		cardBody.append(iconImg);
 
 		var temp = $("<p>");
-		temp.text(`Temp: ${day.temp.max} \xB0F`);
+		temp.text(`Temp: ${day.temp.max} F`);
 		cardBody.append(temp);
 
 		var humidity = $("<p>");
