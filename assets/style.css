@@ -1,6 +1,7 @@
 * {
 	box-sizing: border-box;
 	margin: 0;
+	background-color: rgb(111, 167, 142);
 }
 
 header {
@@ -23,6 +24,6 @@ header {
 	margin: 10px;
 }
 
-#search-city {
+#search {
 	background-color: rgb(1, 102, 92);
 }

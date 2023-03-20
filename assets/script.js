@@ -1,4 +1,4 @@
-var APIKey = "82faa98034ea8ecbf01993a2cd1d2848";
+var apiKey = "f7815e0c66f7fbe10bf92ac5a66f9787";
 var lastSearch;
 var savedCities;
 var cities = [];
@@ -16,7 +16,7 @@ if (localStorage.getItem("cities")) {
 }
 renderCityInfo();
 
-$("#search-city").on("click", function (event) {
+$("#search").on("click", function (event) {
 	event.preventDefault();
 	
 	var city = $("#city-input").val();
@@ -25,13 +25,15 @@ $("#search-city").on("click", function (event) {
 		"https://api.openweathermap.org/data/2.5/weather?q=" +
 		city +
 		"&appid=" +
-		APIKey;
+		apiKey;
 
 	
 	$.ajax({
 		url: query1,
 		method: "GET",
 	}).then(function (response) {
+		console.log(response);
+		//set lat to each search's response's coord and lat data
 		lat = response.coord.lat;
 		lon = response.coord.lon;
 
@@ -66,7 +68,7 @@ function renderCityInfo() {
 		"https://api.openweathermap.org/data/2.5/weather?q=" +
 		lastCity +
 		"&appid=" +
-		APIKey;
+		apiKey;
 
 	$.ajax({
 		url: query1,
@@ -88,27 +90,28 @@ function renderCityName(response) {
 	$(".card-title").text(`${response.name} (${currentDate})`);
 	var iconImg = $("<img>");
 	var iconCode = response.weather[0].icon;
-	var iconUrl = "http://openweathermap.org/img/wn/" + iconCode + ".png";
+	var iconUrl = "https://openweathermap.org/img/wn/" + iconCode + ".png";
 	iconImg.attr("src", iconUrl);
 	$(".card-title").append(iconImg);
 }
 
 
 function renderCityByLoc(lat, lon) {
+	//var city = $("#city-input").val();
 	var query2 =
-		"https://api.openweathermap.org/data/2.5/onecall?lat=" +
+	"https://api.openweathermap.org/data/2.5/weather?lat=" +
 		lat +
 		"&lon=" +
 		lon +
-		"&units=imperial&appid=" +
-		APIKey;
+		"&appid=" +
+		apiKey;
 
 	$.ajax({
 		url: query2,
 		method: "GET",
 	}).then(function (response) {
-		
-		$("#temperature").text(`Temperature: ${response.current.temp} F`);
+		console.log(response);
+		$("#temperature").text(`Temperature: ${response.current.temp} \xB0F`);
 		$("#humidity").text(`Humidity: ${response.current.humidity}%`);
 		$("#wind-speed").text(`Wind Speed: ${response.current.wind_speed} MPH`);
 
@@ -142,7 +145,7 @@ function renderForecastCards(response) {
 
 		var iconImg = $("<img>");
 		var iconCode = day.weather[0].icon;
-		var iconUrl = "http://openweathermap.org/img/wn/" + iconCode + ".png";
+		var iconUrl = "https://openweathermap.org/img/wn/" + iconCode + ".png";
 		iconImg.attr("src", iconUrl);
 		cardBody.append(iconImg);
 
