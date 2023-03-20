@@ -22,3 +22,7 @@ header {
 .daycard {
 	margin: 10px;
 }
+
+#search-city {
+	background-color: rgb(1, 102, 92);
+}

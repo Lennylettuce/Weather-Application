@@ -119,12 +119,13 @@ function renderCityByLoc(lat, lon) {
 function renderForecastCards(response) {
 	$("#forecast-cards").empty();
 	
+	//make array for response data
 	var dayCardInfo = response.daily;
-	
+	//get 2-6th index
 	dayCardInfo.slice(1, 6).map((day) => {
 		var dayCards = $("<div>");
 		dayCards.addClass("card col-md-4 daycard");
-		dayCards.css("background-color", "white");
+		dayCards.css("background-color", "lightgreen");
 		dayCards.css("margin-right", "5px");
 		dayCards.css("font-size", "15px");
 
