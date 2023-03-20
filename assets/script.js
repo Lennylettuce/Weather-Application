@@ -14,7 +14,7 @@ if (localStorage.getItem("cities")) {
 } else {
 	cities;
 }
-renderCityInfo();2
+renderCityInfo();
 console.log("cities", cities);
 
 $("#search-city").on("click", function (event) {
