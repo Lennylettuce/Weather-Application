@@ -5,7 +5,7 @@ Users can type in the name of a location, press the search button and view a 5 d
 # link to the deployed website :
 https://lennylettuce.github.io/Weather-Application/
 
-[![weather-app alt text](./assets/screen-shot.png)](./assets/screen-shot.png)
+[![weather-app alt text](./assets/screenshot.png)](./assets/screenshot.png)
 
 ## Cited Sources
 1. https://git.bootcampcontent.com/Washington-University-in-St.-Louis/WUSTL-VIRT-FSF-PT-01-2023-U-LOLC - structure, syntax, all aspects

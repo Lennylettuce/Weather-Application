@@ -97,7 +97,6 @@ function renderCityName(response) {
 
 
 function renderCityByLoc(lat, lon) {
-	//var city = $("#city-input").val();
 	var query2 =
 	"https://api.openweathermap.org/data/2.5/weather?lat=" +
 		lat +
@@ -111,52 +110,55 @@ function renderCityByLoc(lat, lon) {
 		method: "GET",
 	}).then(function (response) {
 		console.log(response);
-		$("#temperature").text(`Temperature: ${response.current.temp} \xB0F`);
-		$("#humidity").text(`Humidity: ${response.current.humidity}%`);
-		$("#wind-speed").text(`Wind Speed: ${response.current.wind_speed} MPH`);
+		$("#temperature").text(`Temperature: ${response.main.temp} F`);
+		$("#humidity").text(`Humidity: ${response.main.humidity}%`);
+		$("#wind-speed").text(`Wind Speed: ${response.wind.speed} MPH`);
 
-		renderForecastCards(response);
-	});
-}
-
-function renderForecastCards(response) {
-	$("#forecast-cards").empty();
+		for (var i = 0; i < days; i++) {
+			$("#temperature").text(`Temperature: ${response.main.temp} F`);
+			$("#humidity").text(`Humidity: ${response.main.humidity}%`);
+			$("#wind-speed").text(`Wind Speed: ${response.wind.speed} MPH`);
+		}
 	
-	//make array for response data
-	var dayCardInfo = response.daily;
-	//get 2-6th index
-	dayCardInfo.slice(1, 6).map((day) => {
-		var dayCards = $("<div>");
-		dayCards.addClass("card col-md-4 daycard");
-		dayCards.css("background-color", "lightgreen");
-		dayCards.css("margin-right", "5px");
-		dayCards.css("font-size", "15px");
-
-		var cardBody = $("<div>");
-		cardBody.addClass("card-body");
-		dayCards.append(cardBody);
-
-		var cardName = $("<h6>");
-		cardName.addClass("card-title");
-		var datestamp = moment.unix(day.dt);
-		var forecastDate = datestamp.format("L");
-		cardName.text(forecastDate);
-		cardBody.append(cardName);
-
-		var iconImg = $("<img>");
-		var iconCode = day.weather[0].icon;
-		var iconUrl = "https://openweathermap.org/img/wn/" + iconCode + ".png";
-		iconImg.attr("src", iconUrl);
-		cardBody.append(iconImg);
-
-		var temp = $("<p>");
-		temp.text(`Temp: ${day.temp.max} F`);
-		cardBody.append(temp);
-
-		var humidity = $("<p>");
-		humidity.text(`Humidity: ${day.humidity}%`);
-		cardBody.append(humidity);
-
-		$("#forecast-cards").append(dayCards);
 	});
 }
+
+
+
+//get 2-6th index
+	//$("#forecast-cards").empty();
+//make array for response data
+	//var dayCardInfo = response;
+	//dayCardInfo.slice(1, 6).map((response) => {
+		//var dayCards = $("<div>");
+		//dayCards.addClass("card col-md-4 daycard");
+		//dayCards.css("background-color", "lightgreen");
+		//dayCards.css("margin-right", "5px");
+		//dayCards.css("font-size", "15px");
+
+		//var cardBody = $("<div>");
+		//cardBody.addClass("card-body");
+		//dayCards.append(cardBody);
+
+		//var cardName = $("<h6>");
+		//cardName.addClass("card-title");
+		//var datestamp = moment.unix(response.dt);
+		//var forecastDate = datestamp.format("L");
+		//cardName.text(forecastDate);
+		//cardBody.append(cardName);
+
+		//var iconImg = $("<img>");
+		//var iconCode = response.weather[0].icon;
+		//var iconUrl = "https://openweathermap.org/img/wn/" + iconCode + ".png";
+		//cardBody.append(iconImg);
+
+		//var temp = $("<p>");
+		//temp.text(`Temp: ${response.main.temp} F`);
+		//cardBody.append(temp);
+
+		//var humidity = $("<p>");
+		//humidity.text(`Humidity: ${response.main.humidity}%`);
+		//cardBody.append(humidity);
+
+		//$("#forecast-cards").append(dayCards);
+	//});
