@@ -25,7 +25,8 @@ $("#search").on("click", function (event) {
 		"https://api.openweathermap.org/data/2.5/weather?q=" +
 		city +
 		"&appid=" +
-		apiKey;
+		apiKey +
+		"&units=imperial";
 
 	
 	$.ajax({
@@ -68,7 +69,8 @@ function renderCityInfo() {
 		"https://api.openweathermap.org/data/2.5/weather?q=" +
 		lastCity +
 		"&appid=" +
-		apiKey;
+		apiKey +
+		"&units=imperial";
 
 	$.ajax({
 		url: query1,
@@ -103,7 +105,8 @@ function renderCityByLoc(lat, lon) {
 		"&lon=" +
 		lon +
 		"&appid=" +
-		apiKey;
+		apiKey +
+		"&units=imperial";
 
 	$.ajax({
 		url: query2,
@@ -125,40 +128,3 @@ function renderCityByLoc(lat, lon) {
 
 
 
-//get 2-6th index
-	//$("#forecast-cards").empty();
-//make array for response data
-	//var dayCardInfo = response;
-	//dayCardInfo.slice(1, 6).map((response) => {
-		//var dayCards = $("<div>");
-		//dayCards.addClass("card col-md-4 daycard");
-		//dayCards.css("background-color", "lightgreen");
-		//dayCards.css("margin-right", "5px");
-		//dayCards.css("font-size", "15px");
-
-		//var cardBody = $("<div>");
-		//cardBody.addClass("card-body");
-		//dayCards.append(cardBody);
-
-		//var cardName = $("<h6>");
-		//cardName.addClass("card-title");
-		//var datestamp = moment.unix(response.dt);
-		//var forecastDate = datestamp.format("L");
-		//cardName.text(forecastDate);
-		//cardBody.append(cardName);
-
-		//var iconImg = $("<img>");
-		//var iconCode = response.weather[0].icon;
-		//var iconUrl = "https://openweathermap.org/img/wn/" + iconCode + ".png";
-		//cardBody.append(iconImg);
-
-		//var temp = $("<p>");
-		//temp.text(`Temp: ${response.main.temp} F`);
-		//cardBody.append(temp);
-
-		//var humidity = $("<p>");
-		//humidity.text(`Humidity: ${response.main.humidity}%`);
-		//cardBody.append(humidity);
-
-		//$("#forecast-cards").append(dayCards);
-	//});
